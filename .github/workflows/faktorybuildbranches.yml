@@ -47,6 +47,11 @@ jobs:
     concurrency: "kmmbridgepublish-${{ github.repository }}"
     runs-on: ${{ inputs.runsOn }}
     steps:
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          limit-access-to-actor: true
+        
       - name: Random ID for build branch
         id: generate-uuid
         uses: filipstefansson/uuid-action@v1
