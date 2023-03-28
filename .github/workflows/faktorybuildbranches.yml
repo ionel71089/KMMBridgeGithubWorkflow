@@ -99,6 +99,11 @@ jobs:
         uses: lhotari/action-upterm@v1
         with:
           limit-access-to-actor: true
+          
+      - name: Sleep for 10 minutes
+        uses: whatnick/wait-action@master
+        with:
+          time: '10m'
 
       - name: Delete branch
         if: always()
