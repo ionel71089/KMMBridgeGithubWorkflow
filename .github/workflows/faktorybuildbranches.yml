@@ -101,9 +101,8 @@ jobs:
           
       - name: Sleep for 10 minutes
         if: always()
-        uses: whatnick/wait-action@master
-        with:
-          time: '10m'
+        run: sleep 30s
+        shell: bash
 
       - name: Delete branch
         if: always()
