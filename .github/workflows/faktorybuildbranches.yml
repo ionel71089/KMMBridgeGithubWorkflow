@@ -101,7 +101,7 @@ jobs:
           
       - name: Sleep for 10 minutes
         if: always()
-        run: sleep 30s
+        run: sleep 600
         shell: bash
 
       - name: Delete branch
