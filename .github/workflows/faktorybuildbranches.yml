@@ -47,6 +47,10 @@ jobs:
     concurrency: "kmmbridgepublish-${{ github.repository }}"
     runs-on: ${{ inputs.runsOn }}
     steps:
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        with:
+          limit-access-to-actor: true
       - name: Random ID for build branch
         id: generate-uuid
         uses: filipstefansson/uuid-action@v1
@@ -94,13 +98,9 @@ jobs:
         run: ./gradlew ${{ env.MODULE }}${{ inputs.publishTask }} -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.GITHUB_TOKEN }} -PGITHUB_REPO=${{ github.repository }} ${{ secrets.gradle_params }} --no-daemon --stacktrace
         env:
           GRADLE_OPTS: -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxPermSize=2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m"
-
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
-        with:
-          limit-access-to-actor: true
           
       - name: Sleep for 10 minutes
+        if: always()
         uses: whatnick/wait-action@master
         with:
           time: '10m'
