@@ -105,10 +105,10 @@ jobs:
         env:
           GRADLE_OPTS: -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:MaxPermSize=2048m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m"
           
-      - name: Sleep for 10 minutes
-        if: always()
-        run: sleep 600
-        shell: bash
+#       - name: Sleep for 10 minutes
+#         if: always()
+#         run: sleep 600
+#         shell: bash
 
       - name: Delete branch
         if: always()
