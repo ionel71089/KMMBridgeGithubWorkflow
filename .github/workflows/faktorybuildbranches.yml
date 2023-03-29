@@ -49,14 +49,14 @@ jobs:
     concurrency: "kmmbridgepublish-${{ github.repository }}"
     runs-on: ${{ inputs.runsOn }}
     steps:
-#       - name: Add ssh key
-#         uses: webfactory/ssh-agent@v0.7.0
-#         with:
-#           ssh-private-key: "${{ secrets.SSH_PRIVATE_KEY }}"
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - name: Add ssh key
+        uses: webfactory/ssh-agent@v0.7.0
         with:
-          limit-access-to-actor: true
+          ssh-private-key: "${{ secrets.SSH_PRIVATE_KEY }}"
+#       - name: Setup upterm session
+#         uses: lhotari/action-upterm@v1
+#         with:
+#           limit-access-to-actor: true
       - name: Random ID for build branch
         id: generate-uuid
         uses: filipstefansson/uuid-action@v1
