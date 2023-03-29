@@ -31,6 +31,8 @@ on:
         required: false
       PODSPEC_SSH_KEY:
         required: false
+      SSH_PRIVATE_KEY:
+        required: false
       netrcUsername:
         description: 'Netrc username param'
         required: false
@@ -47,6 +49,10 @@ jobs:
     concurrency: "kmmbridgepublish-${{ github.repository }}"
     runs-on: ${{ inputs.runsOn }}
     steps:
+      - name: Add ssh key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: "${{ secrets.SSH_PRIVATE_KEY }}"
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
         with:
